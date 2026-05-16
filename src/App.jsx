@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
-import Logo from '@/components/Logo';          // Vite resolverá Logo.jsx sin necesidad de extensión
+import { useState } from 'react';
+import Logo from '@/components/Logo';
 import NavIcons from '@/components/NavIcons';
 import VideoBackground from '@/components/VideoBackground';
 import SplashAnimation from '@/components/SplashAnimation';
 import Services from '@/components/Services';
+import Partners from '@/components/Partners'; // <--- 1. Importamos tu nuevo componente
 import Footer from '@/components/Footer';
 
 export default function App() {
@@ -28,7 +29,7 @@ export default function App() {
 
       {stage === 'content' && (
         <main className="min-h-screen pt-24">
-        {/* =============== HERO =============== */}
+          {/* =============== HERO =============== */}
           <section className="flex flex-col justify-center min-h-[calc(100vh-6rem)] px-6 md:pl-[18%] md:pr-0">
             <div className="max-w-xl">
               <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-none md:whitespace-nowrap">
@@ -52,98 +53,7 @@ export default function App() {
           </section>
 
           {/* =============== FRANJA DE LETRAS =============== */}
-          <section className="bg-black py-10 overflow-hidden">
-            <style>{`
-              @keyframes marquee {
-                0%   { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
-              }
-              .animate-marquee {
-                animation: marquee 50s linear infinite;
-              }
-              .spacer {
-                width: 15vw;
-              }
-            `}</style>
-
-            <div className="flex gap-32 w-max animate-marquee">
-              {/* Grupo original */}
-              <div className="flex gap-32">
-                {[
-                  { src: '/images/partners/mercury.webp', alt: 'Mercury', link: 'https://mercury-market.vercel.app' },
-                  { src: '/images/partners/h.png', alt: 'H', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/r.png', alt: 'r', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/o.png', alt: 'o', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/d.png', alt: 'd', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/r.png', alt: 'r', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/i.png', alt: 'i', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/c.png', alt: 'c', link: 'https://hrodricstudios.vercel.app' },
-                ].map((letter, index) => (
-                  <a
-                    key={index}
-                    href={letter.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-shrink-0"
-                  >
-                    <img
-                      src={letter.src}
-                      alt={letter.alt}
-                      className="h-12 w-auto object-contain transition-all duration-300 cursor-pointer"
-                      style={{ filter: 'grayscale(100%) brightness(1.8) contrast(1.3)' }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.filter = 'grayscale(0%) brightness(1) contrast(1)';
-                        e.currentTarget.style.transform = 'scale(1.25)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.filter = 'grayscale(100%) brightness(1.8) contrast(1.3)';
-                        e.currentTarget.style.transform = 'scale(1)';
-                      }}
-                    />
-                  </a>
-                ))}
-                <div className="spacer" />
-              </div>
-
-              {/* Grupo duplicado */}
-              <div className="flex gap-32">
-                {[
-                  { src: '/images/partners/mercury.webp', alt: 'Mercury', link: 'https://mercury-market.vercel.app' },
-                  { src: '/images/partners/h.png', alt: 'H', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/r.png', alt: 'r', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/o.png', alt: 'o', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/d.png', alt: 'd', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/r.png', alt: 'r', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/i.png', alt: 'i', link: 'https://hrodricstudios.vercel.app' },
-                  { src: '/images/partners/c.png', alt: 'c', link: 'https://hrodricstudios.vercel.app' },
-                ].map((letter, index) => (
-                  <a
-                    key={`dup-${index}`}
-                    href={letter.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-shrink-0"
-                  >
-                    <img
-                      src={letter.src}
-                      alt={letter.alt}
-                      className="h-12 w-auto object-contain transition-all duration-300 cursor-pointer"
-                      style={{ filter: 'grayscale(100%) brightness(1.8) contrast(1.3)' }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.filter = 'grayscale(0%) brightness(1) contrast(1)';
-                        e.currentTarget.style.transform = 'scale(1.25)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.filter = 'grayscale(100%) brightness(1.8) contrast(1.3)';
-                        e.currentTarget.style.transform = 'scale(1)';
-                      }}
-                    />
-                  </a>
-                ))}
-                <div className="spacer" />
-              </div>
-            </div>
-          </section>
+          <Partners /> {/* <--- 2. Reemplazo completo de la sección vieja */}
 
           {/* =============== SERVICIOS =============== */}
           <Services />
