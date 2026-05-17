@@ -160,7 +160,7 @@ export default function ContactForm() {
             {emailState.succeeded && (
               <p className="text-green-400 text-sm mt-3">¡Mensaje enviado con éxito!</p>
             )}
-            {emailState.errors.length > 0 && (
+            {emailState.errors && emailState.errors.length > 0 && (
               <p className="text-red-400 text-sm mt-3">Error al enviar. Intenta de nuevo.</p>
             )}
           </form>
