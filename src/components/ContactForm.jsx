@@ -1,8 +1,13 @@
 import { useState } from 'react';
+import { useForm } from '@formspree/react';
 
 export default function ContactForm() {
   const [mode, setMode] = useState('whatsapp');
   const [formData, setFormData] = useState({ name: '', email: '', message: '', company: '' });
+
+  // Formspree
+  const FORMSPREE_ID = 'xgoqwdjj';  // ← Reemplazá con tu ID real
+  const [emailState, handleEmailSubmit] = useForm(FORMSPREE_ID);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -112,48 +117,59 @@ export default function ContactForm() {
             </button>
           </form>
         ) : (
-          <div key="email" className="space-y-5 fade-in-up">
-            <div>
-              <input
-                type="text"
-                name="name"
-                placeholder="Nombre"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
-              />
-            </div>
-            <div>
-              <textarea
-                name="message"
-                placeholder="Mensaje"
-                rows={4}
-                value={formData.message}
-                onChange={handleChange}
-                required
-                className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
-              />
-            </div>
-            <a
-              href={emailLink}
-              className="block w-full bg-black text-white border border-white rounded-full py-3 font-semibold text-center relative overflow-hidden group hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:scale-[1.02] transition-all duration-300"
-            >
-              <span className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-              <span className="relative z-10">Enviar mensaje</span>
-            </a>
+        <form key="email" onSubmit={handleEmailSubmit} className="space-y-5 fade-in-up">
+          <input type="hidden" name="formType" value="email" />
+          <div>
+            <input
+              type="text"
+              name="name"
+              placeholder="Nombre"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+            />
           </div>
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+            />
+          </div>
+          <div>
+            <textarea
+              name="message"
+              placeholder="Mensaje"
+              rows={4}
+              value={formData.message}
+              onChange={handleChange}
+              required
+              className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={emailState.submitting}
+            className="w-full bg-black text-white border border-white rounded-full py-3 font-semibold relative overflow-hidden group hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:scale-[1.02] transition-all duration-300"
+          >
+            <span className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+            <span className="relative z-10">
+              {emailState.submitting ? 'Enviando...' : 'Enviar mensaje'}
+            </span>
+          </button>
+          {emailState.succeeded && (
+            <p className="text-green-400 text-sm mt-3">¡Mensaje enviado con éxito!</p>
+          )}
+          {emailState.errors.length > 0 && (
+            <p className="text-red-400 text-sm mt-3">Error al enviar. Intenta de nuevo.</p>
+          )}
+        </form>
+      )}
         )}
       </div>
     </>
