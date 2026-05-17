@@ -4,8 +4,10 @@ import NavIcons from '@/components/NavIcons';
 import VideoBackground from '@/components/VideoBackground';
 import SplashAnimation from '@/components/SplashAnimation';
 import Services from '@/components/Services';
-import Partners from '@/components/Partners'; // <--- 1. Importamos tu nuevo componente
+import Partners from '@/components/Partners';
 import Footer from '@/components/Footer';
+import Projects from '@/components/Projects';
+import ContactForm from '@/components/ContactForm';
 
 export default function App() {
   const [stage, setStage] = useState(() =>
@@ -30,33 +32,41 @@ export default function App() {
       {stage === 'content' && (
         <main className="min-h-screen pt-24">
           {/* =============== HERO =============== */}
-          <section className="flex flex-col justify-center min-h-[calc(100vh-6rem)] px-6 md:pl-[18%] md:pr-0">
-            <div className="max-w-xl">
-              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-none md:whitespace-nowrap">
-                <span className="text-white">We deliver.</span>{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 via-white to-gray-500">
-                  Fast.
-                </span>
-              </h1>
-
-              <p className="mt-8 text-xl md:text-2xl text-gray-300">
-                Robustez y velocidad. Código sólido que llega antes y rinde siempre.
-              </p>
-
-              <a
-                href="https://hrodricstudio.vercel.app"
-                className="mt-12 inline-block text-white text-2xl md:text-3xl font-bold tracking-[0.15em] uppercase hover:opacity-80 transition-opacity"
+          <section className="flex flex-col lg:flex-row items-start justify-center min-h-screen px-6 md:px-8 gap-0">
+            {/* Columna izquierda: texto */}
+            <div className="w-full lg:w-1/2 flex justify-end lg:pr-6 pt-12 lg:pt-24">
+              <div className="max-w-[500px]">
+                <h1
+                className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-none fade-in-up font-futuristic tracking-tight"
+                style={{ animationDelay: '400ms' }}
               >
-                CONECTEMOS
-              </a>
+                Digitaliza tu visión
+              </h1>
+                <p
+                  className="text-2xl md:text-3xl text-gray-400 mt-6 fade-in-up"
+                  style={{ animationDelay: '200ms' }}
+                >
+                  Ideas que se mueven, rápido.
+                </p>
+              </div>
+            </div>
+
+            {/* Columna derecha: Formulario con toggle */}
+            <div className="w-full lg:w-1/2 flex justify-start lg:pl-4 lg:pt-20 fade-in-up" style={{ animationDelay: '300ms' }}>
+              <div className="w-full max-w-[460px] bg-black/40 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl">
+                <ContactForm />
+              </div>
             </div>
           </section>
 
           {/* =============== FRANJA DE LETRAS =============== */}
-          <Partners /> {/* <--- 2. Reemplazo completo de la sección vieja */}
+          <Partners />
 
           {/* =============== SERVICIOS =============== */}
           <Services />
+
+          {/* =============== PROYECTOS =============== */}
+          <Projects />
 
           {/* =============== NOSOTROS =============== */}
           <section id="nosotros" className="py-24 px-6 md:px-12">
