@@ -10,6 +10,7 @@ const icons = [
 export default function NavIcons({ visible }) {
   const [expanded, setExpanded] = useState(null);
   const [animReady, setAnimReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (visible) {
@@ -21,9 +22,28 @@ export default function NavIcons({ visible }) {
     }
   }, [visible]);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleMouseEnter = (index) => {
+    if (isMobile) return;
+    setExpanded(index);
+  };
+
+  const handleMouseLeave = () => {
+    if (isMobile) return;
+    setExpanded(null);
+  };
+
   if (!visible) return null;
 
-  const SHIFT = 100; // px
+  const SHIFT = 100;
 
   return (
     <div
@@ -50,10 +70,9 @@ export default function NavIcons({ visible }) {
               href={icon.link}
               className="relative flex items-center transition-transform duration-500 ease-out"
               style={{ transform: `translateX(${translateX}px)` }}
-              onMouseEnter={() => setExpanded(i)}
-              onMouseLeave={() => setExpanded(null)}
+              onMouseEnter={() => handleMouseEnter(i)}
+              onMouseLeave={handleMouseLeave}
             >
-              {/* Círculo base (siempre igual) */}
               <span
                 className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
                   isActive
@@ -71,8 +90,7 @@ export default function NavIcons({ visible }) {
                 />
               </span>
 
-              {/* Texto expandido que arranca en la mitad del círculo */}
-              {isActive && (
+              {isActive && !isMobile && (
                 <span
                   className="absolute top-0 left-1/2 h-12 flex items-center bg-white text-black font-semibold rounded-r-full shadow-lg whitespace-nowrap transition-all duration-500 ease-out"
                   style={{
