@@ -170,7 +170,6 @@ export default function ContactForm() {
           )}
         </form>
       )}
-        )}
       </div>
     </>
   );
