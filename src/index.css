@@ -79,3 +79,20 @@ body {
     background-position: 200% center;
   }
 }
+
+/* --- Desvanecimiento del Hero al hacer scroll --- */
+@keyframes fade-out-on-scroll {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.hero-fade-out {
+  animation: fade-out-on-scroll linear both;
+  animation-timeline: view();
+  animation-range: exit 0% exit 100%;
+}
+

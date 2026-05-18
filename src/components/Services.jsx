@@ -25,9 +25,9 @@ export default function Services() {
     <section id="servicios" className="relative py-24 px-6 md:px-12 overflow-hidden">
       {/* Contenedor principal con flex row: tarjetas a la izquierda, astronauta a la derecha */}
       <div className="relative max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-16 fade-in-up">
-          Servicios
-        </h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-16 fade-in-up font-futuristic">
+        Servicios
+      </h2>
 
         <div className="flex flex-col lg:flex-row gap-12 items-start">
           {/* Columna izquierda: Tarjetas (ocupan ~60% del ancho) */}
@@ -39,37 +39,37 @@ export default function Services() {
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 {/* Tarjeta con fondo semitransparente para ver el video */}
-                <div className="relative w-full rounded-2xl border border-gray-800/60 bg-black/40 backdrop-blur-sm
-                  transition-all duration-500 ease-out transform-style-3d
-                  group-hover:rotate-x-[-5deg] group-hover:rotate-y-[10deg]
-                  group-hover:shadow-[0_0_30px_rgba(255,255,255,0.05),0_0_60px_rgba(255,255,255,0.02)]
-                  group-hover:border-gray-600">
-                  
-                  {/* Brillo superior izquierdo */}
-                  <div className="absolute top-0 left-0 w-20 h-20 overflow-hidden rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                    <div className="absolute -top-5 -left-5 w-10 h-[1px] bg-gradient-to-r from-white/20 to-transparent rotate-45" />
-                  </div>
-
-                  <div className="p-8 flex flex-col">
-                    {/* Número */}
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-200 opacity-40 group-hover:opacity-80 transition-opacity duration-500">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <div className="w-8 h-[1px] bg-gradient-to-r from-gray-600 to-transparent" />
-                    </div>
-
-                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-gray-200 transition-colors duration-300">
-                      {service.name}
-                    </h3>
-
-                    <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                      {service.description}
-                    </p>
-
-                    <div className="mt-6 h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-                </div>
+                <div
+  className="relative w-full rounded-md border-2 border-[#555555] bg-[#16161d] transition-transform duration-500 ease-out group"
+  style={{
+    transformStyle: 'preserve-3d',
+    willChange: 'transform',
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = 'translateZ(10px) rotateX(10deg) rotateY(5deg)';
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = 'translateZ(0px) rotateX(0deg) rotateY(0deg)';
+  }}
+>
+  <div className="p-4 flex flex-col">
+    {/* Número y título */}
+    <div className="flex items-center gap-4 mb-2">
+      <span className="text-3xl font-bold text-gray-400">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+      <div className="w-6 h-px bg-gray-600" />
+    </div>
+    <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-gray-200 transition-colors duration-300">
+      {service.name}
+    </h3>
+    <p className="text-gray-400 text-sm leading-relaxed">
+      {service.description}
+    </p>
+    {/* Línea que se desvanece hacia la derecha */}
+    <div className="h-px bg-gradient-to-r from-[#555555] to-transparent mt-3 w-full" />
+  </div>
+</div>
               </div>
             ))}
           </div>

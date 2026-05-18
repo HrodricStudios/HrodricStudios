@@ -5,6 +5,7 @@ export default function Partners() {
 
   const partners = [
   { src: '/images/partners/mercury.webp', alt: 'Mercury', link: 'https://mercury-market.vercel.app' },
+  { src: '/images/partners/casaryn.png', alt: 'Casaryn', link: 'https://casaryn.vercel.app' },
   { src: '/images/partners/h.png', alt: 'H', link: 'https://hrodricstudios.hrodricstudios.workers.dev/' },
   { src: '/images/partners/r.png', alt: 'r', link: 'https://hrodricstudios.hrodricstudios.workers.dev/' },
   { src: '/images/partners/o.png', alt: 'o', link: 'https://hrodricstudios.hrodricstudios.workers.dev/' },
@@ -60,7 +61,6 @@ export default function Partners() {
               />
             </a>
           ))}
-          <div className="spacer" />
         </div>
 
         {/* Grupo duplicado */}
@@ -82,7 +82,6 @@ export default function Partners() {
               />
             </a>
           ))}
-          <div className="spacer" />
         </div>
       </div>
     </section>

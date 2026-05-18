@@ -32,7 +32,7 @@ export default function App() {
       {stage === 'content' && (
         <main className="min-h-screen pt-24">
           {/* =============== HERO =============== */}
-          <section className="flex flex-col lg:flex-row items-start justify-center min-h-screen px-6 md:px-8 gap-0">
+          <section className="flex flex-col lg:flex-row items-start justify-center min-h-screen px-6 md:px-8 gap-0 hero-fade-out">
             {/* Columna izquierda: texto */}
             <div className="w-full lg:w-1/2 flex justify-end lg:pr-6 pt-12 lg:pt-24">
               <div className="max-w-[500px]">
