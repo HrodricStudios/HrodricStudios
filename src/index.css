@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&display=swap');
+@import "@fontsource-variable/inter";
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +9,11 @@ body {
   @apply bg-black text-white antialiased;
 }
 
-/* Animación de aparición suave (fade-in-up) */
+.font-futuristic {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Animación fade-in-up (usada en Hero y otras secciones) */
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -22,77 +26,19 @@ body {
 }
 
 .fade-in-up {
-  animation: fade-in-up 0.7s ease-out both;
+  animation: fade-in-up 0.8s ease-out both;
 }
 
-/* --- Efecto 3D para tarjetas de servicios --- */
-.card-3d-parent {
-  perspective: 1000px;
-}
-
-.card-3d {
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.card-3d-parent:hover .card-3d {
-  transform: rotateX(10deg) rotateY(-10deg);
-  box-shadow: -10px 10px 30px rgba(0, 242, 254, 0.15),
-              0 0 40px rgba(0, 242, 254, 0.1);
-}
-
-.card-content-3d {
-  transform: translateZ(40px);
-  transition: transform 0.5s ease;
-}
-
-.card-badge-3d {
-  transform: translateZ(60px);
-}
-
-.font-futuristic {
-  font-family: 'Orbitron', sans-serif;
-}
-
-/* --- Shimmering Effect Plateado --- */
-.shimmer-text {
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    #c0c0c0 25%,
-    #ffffff 50%,
-    #a0a0a0 75%,
-    #ffffff 100%
-  );
-  background-size: 200% auto;
+/* Efecto shimmer para el título (si lo usás) */
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
+  animation: shimmer 2s infinite;
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: 0% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
-
-/* --- Desvanecimiento del Hero al hacer scroll --- */
-@keyframes fade-out-on-scroll {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.hero-fade-out {
-  animation: fade-out-on-scroll linear both;
-  animation-timeline: view();
-  animation-range: exit 0% exit 100%;
-}
-

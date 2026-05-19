@@ -5,7 +5,8 @@ module.exports = {
     "./src/**/*.{js,jsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [],
 };
