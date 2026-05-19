@@ -2,86 +2,176 @@
 
 export default function Footer() {
   return (
-    <footer className="px-4 md:px-8 pb-10">
-      {/* Contenedor principal con el estilo de Arkitek */}
-      <div 
-        className="max-w-7xl mx-auto rounded-[64px] px-6 md:px-16 py-16"
-        style={{
-          background: 'linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 60%, rgb(26, 26, 26) 100%)',
-          boxShadow: 'rgb(125, 125, 125) 0px -0.5px 1px 0px inset',
-        }}
-      >
+    <footer className="px-4 md:px-8 pb-10 overflow-x-hidden">
+      <div className="max-w-7xl mx-auto rounded-3xl border border-gray-800/20 shadow-[0_8px_30px_rgba(0,0,0,0.6)] bg-black px-6 md:px-12 py-16">
         
-        {/* Sección superior: 2 columnas (Izquierda y Derecha) */}
-        <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">
+        {/* Grid de 5 columnas (sin cambios de posición) */}
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_auto_1fr_auto_1fr] gap-6 md:gap-10 mb-12">
           
-          {/* Columna Izquierda: Ubicación + Contacto */}
+          {/* Columna 1: Ubicación + Contacto */}
           <div className="space-y-10">
             <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-3">Ubicación</p>
-              <p className="text-[#eeeeee] text-base leading-relaxed">
+              <p className="uppercase tracking-[0.2em] mb-2"
+                style={{
+                  fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  color: 'rgb(153, 153, 153)',
+                }}
+              >
+                Ubicación
+              </p>
+              <p style={{
+                  fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+                  fontWeight: 500,
+                  fontSize: '16px',           // ← antes 27px
+                  lineHeight: '24px',         // ← antes 36px
+                  color: 'rgb(238, 238, 238)',
+                }}
+              >
                 Rosario, Argentina
               </p>
             </div>
             <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-3">Contacto</p>
-              <div className="space-y-2 text-base">
-                <a href="mailto:hrodricstudios@gmail.com" className="block text-[#eeeeee] hover:text-gray-300 transition">
+              <p className="uppercase tracking-[0.2em] mb-2"
+                style={{
+                  fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  color: 'rgb(153, 153, 153)',
+                }}
+              >
+                Contacto
+              </p>
+              <div style={{
+                  fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+                  fontWeight: 500,
+                  fontSize: '16px',           // ← antes 27px
+                  lineHeight: '24px',         // ← antes 36px
+                  color: 'rgb(238, 238, 238)',
+                }}
+              >
+                <a href="mailto:hrodricstudios@gmail.com" className="block hover:text-gray-300 transition break-words">
                   hrodricstudios@gmail.com
                 </a>
-                <a href="tel:+5493413615056" className="block text-[#eeeeee] hover:text-gray-300 transition">
-                  +54 9 341 361-5056
+              </div>
+            </div>
+          </div>
+
+          {/* Columna 2: Título Links */}
+          <div>
+            <p className="uppercase tracking-[0.2em]"
+              style={{
+                fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+                fontWeight: 400,
+                fontSize: '16px',
+                lineHeight: '24px',
+                color: 'rgb(153, 153, 153)',
+              }}
+            >
+              Links
+            </p>
+          </div>
+
+          {/* Columna 3: Lista de links (con más separación) */}
+          <div>
+            <div className="space-y-[30px]">   {/* ← 2.5 × 4px = 10px */}
+              {[
+                { name: 'Servicios', href: '#servicios' },
+                { name: 'Proyectos', href: '#proyectos' },
+                { name: 'Nosotros', href: '#nosotros' },
+                { name: 'Contacto', href: '#contacto' },
+              ].map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="relative group block w-fit"
+                  style={{
+                    fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+                    fontWeight: 500,
+                    fontSize: '27px',
+                    lineHeight: '36px',
+                    color: 'rgb(238, 238, 238)',
+                  }}
+                >
+                  {link.name}
+                  <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
                 </a>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Columna Derecha: Links + Redes */}
-          <div className="flex gap-16">
-            {/* Sub-columna Links (título a la izquierda, lista a la derecha) */}
-            <div className="flex items-start gap-4">
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 pt-1 w-14">Links</p>
-              <div className="space-y-3">
-                <a href="#servicios" className="block text-[#eeeeee] text-xl font-semibold hover:text-gray-300 transition">Servicios</a>
-                <a href="#proyectos" className="block text-[#eeeeee] text-xl font-semibold hover:text-gray-300 transition">Proyectos</a>
-                <a href="#nosotros" className="block text-[#eeeeee] text-xl font-semibold hover:text-gray-300 transition">Nosotros</a>
-                <a href="#contacto" className="block text-[#eeeeee] text-xl font-semibold hover:text-gray-300 transition">Contacto</a>
-              </div>
-            </div>
+          {/* Columna 4: Título Redes */}
+          <div>
+            <p className="uppercase tracking-[0.2em]"
+              style={{
+                fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+                fontWeight: 400,
+                fontSize: '16px',
+                lineHeight: '24px',
+                color: 'rgb(153, 153, 153)',
+              }}
+            >
+              Redes
+            </p>
+          </div>
 
-            {/* Sub-columna Redes (título a la izquierda, lista a la derecha) */}
-            <div className="flex items-start gap-4">
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-500 pt-1 w-14">Redes</p>
-              <div className="space-y-3">
-                <a href="#" className="block text-[#eeeeee] text-xl font-semibold hover:text-gray-300 transition">Instagram</a>
-                <a href="#" className="block text-[#eeeeee] text-xl font-semibold hover:text-gray-300 transition">LinkedIn</a>
-              </div>
+          {/* Columna 5: Lista de redes (con más separación) */}
+          <div>
+            <div className="space-y-[30px]">   {/* ← 2.5 × 4px = 10px */}
+              {[
+                { name: 'Instagram', href: '#' },
+                { name: 'LinkedIn', href: '#' },
+              ].map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="relative group block w-fit"
+                  style={{
+                    fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+                    fontWeight: 500,
+                    fontSize: '27px',
+                    lineHeight: '36px',
+                    color: 'rgb(238, 238, 238)',
+                  }}
+                >
+                  {link.name}
+                  <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Franja negra generosa con "Hrodric Studios" en grande */}
-        <div className="pt-16 pb-12 text-center bg-black -mx-6 md:-mx-16">
-          <h2 className="text-7xl md:text-[8rem] font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-300 via-white to-gray-500 leading-none">
-            Hrodric Studios
-          </h2>
-        </div>
+        {/* Nombre del estudio */}
+        <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-300 via-white to-gray-500 text-center mb-10">
+          Hrodric Studios
+        </h2>
 
-        {/* Sección inferior: Copyright + Botón Back to Top */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8">
-          
-          {/* Copyright */}
-          <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Hrodric Studios. All Rights Reserved
+        {/* Fila inferior: copyright + botón subir */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p
+            className="text-center sm:text-left"
+            style={{
+              fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+              fontWeight: 400,
+              fontSize: '14px',
+              lineHeight: '20px',
+              color: 'rgb(153, 153, 153)',
+            }}
+          >
+            © {new Date().getFullYear()} Hrodric Studios. Todos los derechos reservados.
           </p>
 
-          {/* Botón Back to Top con círculo estilo Arkitek */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="text-[#eeeeee] hover:text-white transition text-sm uppercase tracking-wider inline-flex items-center gap-4"
+            className="text-gray-400 hover:text-white transition text-sm uppercase tracking-wider flex items-center gap-2"
           >
-            Back to Top
-            <span className="w-8 h-8 rounded-full flex items-center justify-center"
+            Subir
+            <span
+              className="w-8 h-8 rounded-lg flex items-center justify-center"
               style={{
                 background: 'linear-gradient(180deg, rgb(69, 69, 69) 0%, rgb(0, 0, 0) 100%)',
                 boxShadow: 'inset 1.5px 1.5px 2px 0px rgba(255, 255, 255, 0.15)',
