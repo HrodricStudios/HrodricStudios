@@ -5,7 +5,6 @@ export default function ContactForm() {
   const [mode, setMode] = useState('whatsapp');
   const [formData, setFormData] = useState({ name: '', email: '', message: '', company: '' });
 
-  // Formspree
   const FORMSPREE_ID = 'xgoqwdjj';
   const [emailState, handleEmailSubmit] = useForm(FORMSPREE_ID);
 
@@ -13,14 +12,26 @@ export default function ContactForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // WhatsApp
   const whatsappMessage = `Hola, soy ${formData.name} de ${formData.company}, quiero hacer una consulta sobre el servicio.`;
   const whatsappLink = `https://wa.me/5493413615056?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
-    <>
+    <div className="bg-black/40 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 lg:p-10 shadow-2xl">
       <div className="flex items-center justify-between mb-8">
-        <h3 className="text-2xl font-semibold text-white">Contáctanos</h3>
+        <h3
+          style={{
+            fontFamily: 'Inter, "Inter Placeholder", sans-serif',
+            fontWeight: 600,
+            fontSize: '27px',
+            lineHeight: '36px',
+            color: 'rgb(153, 153, 153)',
+            letterSpacing: '-0.05em',
+            textRendering: 'optimizeLegibility',
+            WebkitFontSmoothing: 'antialiased',
+          }}
+        >
+          Contáctanos
+        </h3>
 
         {/* Toggle plateado con círculo negro */}
         <button
@@ -80,6 +91,7 @@ export default function ContactForm() {
                 onChange={handleChange}
                 required
                 className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-colors"
+                style={{ fontSize: '14px', fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}
               />
             </div>
             <div>
@@ -90,6 +102,7 @@ export default function ContactForm() {
                 value={formData.company}
                 onChange={handleChange}
                 className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-colors"
+                style={{ fontSize: '14px', fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}
               />
             </div>
             <div>
@@ -101,6 +114,7 @@ export default function ContactForm() {
                 onChange={handleChange}
                 required
                 className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-colors resize-none"
+                style={{ fontSize: '14px', fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}
               />
             </div>
             <button
@@ -108,7 +122,7 @@ export default function ContactForm() {
               className="w-full bg-black text-white border border-white rounded-full py-3 font-semibold relative overflow-hidden group hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:scale-[1.02] transition-all duration-300"
             >
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-              <span className="relative z-10">Enviar mensaje</span>
+              <span className="relative z-10" style={{ fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}>Enviar mensaje</span>
             </button>
           </form>
         ) : (
@@ -123,6 +137,7 @@ export default function ContactForm() {
                 onChange={handleChange}
                 required
                 className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                style={{ fontSize: '14px', fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}
               />
             </div>
             <div>
@@ -134,6 +149,7 @@ export default function ContactForm() {
                 onChange={handleChange}
                 required
                 className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                style={{ fontSize: '14px', fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}
               />
             </div>
             <div>
@@ -145,6 +161,7 @@ export default function ContactForm() {
                 onChange={handleChange}
                 required
                 className="w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                style={{ fontSize: '14px', fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}
               />
             </div>
             <button
@@ -153,19 +170,19 @@ export default function ContactForm() {
               className="w-full bg-black text-white border border-white rounded-full py-3 font-semibold relative overflow-hidden group hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:scale-[1.02] transition-all duration-300"
             >
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-              <span className="relative z-10">
+              <span className="relative z-10" style={{ fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}>
                 {emailState.submitting ? 'Enviando...' : 'Enviar mensaje'}
               </span>
             </button>
             {emailState.succeeded && (
-              <p className="text-green-400 text-sm mt-3">¡Mensaje enviado con éxito!</p>
+              <p className="text-green-400 text-sm mt-3" style={{ fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}>¡Mensaje enviado con éxito!</p>
             )}
-            {emailState.errors && emailState.errors.length > 0 && (
-              <p className="text-red-400 text-sm mt-3">Error al enviar. Intenta de nuevo.</p>
+            {emailState.errors?.length > 0 && (
+              <p className="text-red-400 text-sm mt-3" style={{ fontFamily: 'Inter, "Inter Placeholder", sans-serif' }}>Error al enviar. Intenta de nuevo.</p>
             )}
           </form>
         )}
       </div>
-    </>
+    </div>
   );
 }

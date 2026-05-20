@@ -6,6 +6,7 @@ import SplashAnimation from '@/components/SplashAnimation';
 import Hero from '@/components/Hero';
 import Partners from '@/components/Partners';
 import Services from '@/components/Services';
+import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 export default function App() {
@@ -70,6 +71,8 @@ export default function App() {
               ))}
             </div>
           </section>
+
+          <Contact />
 
           {/* =============== FOOTER =============== */}
           <Footer />
