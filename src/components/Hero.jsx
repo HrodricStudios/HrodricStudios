@@ -28,7 +28,7 @@ export default function Hero() {
   return (
     <section className="flex flex-col lg:flex-row items-start justify-center min-h-screen px-6 md:px-8 gap-0 pt-16 lg:pt-32">
       {/* Columna izquierda: Título principal (más arriba en mobile) */}
-      <div className="w-full lg:w-1/2 flex justify-end lg:pr-6 lg:pt-24">
+      <div className="w-full lg:w-1/2 flex justify-end lg:pr-6 lg:pt-16">
         <div className="max-w-[500px] flex flex-col">
           <h1
             className="fade-in-up"
