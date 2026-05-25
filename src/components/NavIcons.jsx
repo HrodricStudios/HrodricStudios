@@ -45,7 +45,7 @@ export default function NavIcons({ visible }) {
 
   return (
     <>
-      {/* Estilos del botón (con esquinas totalmente redondeadas) */}
+      {/* Estilos del botón (píldora, sin cambios) */}
       <style>{`
         .button2 {
           display: inline-block;
@@ -57,7 +57,7 @@ export default function NavIcons({ visible }) {
           padding: 0.7em 1.7em;
           cursor: pointer;
           font-size: 18px;
-          border-radius: 50px;   /* ← sin esquinas, forma de píldora */
+          border-radius: 50px;
           background: #e8e8e8;
           border: 1px solid #ff3737;
           box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
@@ -125,70 +125,132 @@ export default function NavIcons({ visible }) {
           animReady ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'
         }`}
       >
-        {/* Iconos centrados */}
-        <div className="flex justify-center">
-          <div className="flex items-center gap-4">
-            {icons.map((icon, i) => {
-              const isActive = expanded === i;
-              let translateX = 0;
-              if (expanded !== null && expanded !== i) {
-                if (expanded === 0) translateX = SHIFT;
-                else if (expanded === 1 && i === 2) translateX = SHIFT;
-              }
+        {/* Desktop: Iconos centrados + botón */}
+        <div className="hidden md:block relative">
+          <div className="flex justify-center">
+            <div className="flex items-center gap-4">
+              {icons.map((icon, i) => {
+                const isActive = expanded === i;
+                let translateX = 0;
+                if (expanded !== null && expanded !== i) {
+                  if (expanded === 0) translateX = SHIFT;
+                  else if (expanded === 1 && i === 2) translateX = SHIFT;
+                }
 
-              return (
-                <a
-                  key={i}
-                  href={icon.link}
-                  className="relative flex items-center transition-transform duration-500 ease-out"
-                  style={{ transform: `translateX(${translateX}px)` }}
-                  onMouseEnter={() => handleMouseEnter(i)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <span
-                    className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
-                      isActive ? 'bg-white border-white' : 'bg-black border-gray-600'
-                    }`}
+                return (
+                  <a
+                    key={i}
+                    href={icon.link}
+                    className="relative flex items-center transition-transform duration-500 ease-out"
+                    style={{ transform: `translateX(${translateX}px)` }}
+                    onMouseEnter={() => handleMouseEnter(i)}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    <img
-                      src={icon.src}
-                      alt={icon.name}
-                      className="w-7 h-7 object-contain transition-all duration-300"
-                      style={{ filter: isActive ? 'none' : 'invert(1) brightness(100%)' }}
-                    />
-                  </span>
-                  {isActive && !isMobile && (
                     <span
-                      className="absolute top-0 left-1/2 h-12 flex items-center text-black font-semibold rounded-r-full shadow-lg whitespace-nowrap transition-all duration-500 ease-out"
-                      style={{
-                        zIndex: -1,
-                        paddingLeft: '30px',
-                        paddingRight: '20px',
-                        marginLeft: '-2px',
-                        fontFamily: 'Inter, "Inter Placeholder", sans-serif',
-                        fontWeight: 600,
-                        fontSize: '16px',
-                        lineHeight: '19px',
-                        color: 'rgb(0, 0, 0)',
-                        backgroundColor: '#ffffff',
-                      }}
+                      className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                        isActive ? 'bg-white border-white' : 'bg-black border-gray-600'
+                      }`}
                     >
-                      {icon.name}
+                      <img
+                        src={icon.src}
+                        alt={icon.name}
+                        className="w-7 h-7 object-contain transition-all duration-300"
+                        style={{ filter: isActive ? 'none' : 'invert(1) brightness(100%)' }}
+                      />
                     </span>
-                  )}
-                </a>
-              );
-            })}
+                    {isActive && (
+                      <span
+                        className="absolute top-0 left-1/2 h-12 flex items-center text-black font-semibold rounded-r-full shadow-lg whitespace-nowrap transition-all duration-500 ease-out"
+                        style={{
+                          zIndex: -1,
+                          paddingLeft: '30px',
+                          paddingRight: '20px',
+                          marginLeft: '-2px',
+                          fontFamily: 'Inter, "Inter Placeholder", sans-serif',
+                          fontWeight: 600,
+                          fontSize: '16px',
+                          lineHeight: '19px',
+                          color: 'rgb(0, 0, 0)',
+                          backgroundColor: '#ffffff',
+                        }}
+                      >
+                        {icon.name}
+                      </span>
+                    )}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+          {/* Botón rojo en su posición original */}
+          <div className="absolute right-[151px] top-1/2 -translate-y-1/2">
+            <a href="#contactanos" className="button2">
+              Contactanos
+            </a>
           </div>
         </div>
 
-        {/* Botón movido 4 cm a la izquierda (aprox. 151 px) */}
-        <div className="absolute right-[151px] top-1/2 -translate-y-1/2">
-          <a href="#contactanos" className="button2">
+        {/* Mobile: ícono hamburguesa + menú desplegable */}
+        <div className="flex md:hidden justify-end">
+          <MobileMenu />
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* Componente para el menú hamburguesa en mobile */
+function MobileMenu() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(prev => !prev);
+
+  return (
+    <>
+      <button
+        onClick={toggleMenu}
+        className="w-12 h-12 flex flex-col items-center justify-center gap-1.5 bg-black border-2 border-gray-600 rounded-full z-50"
+      >
+        <span className={`block w-5 h-0.5 bg-white transition-transform duration-300 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+        <span className={`block w-5 h-0.5 bg-white transition-opacity duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+        <span className={`block w-5 h-0.5 bg-white transition-transform duration-300 ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
+      </button>
+
+      {menuOpen && (
+        <div className="absolute top-full right-0 mt-2 w-56 bg-black border border-gray-700 rounded-2xl shadow-2xl py-4 px-6 flex flex-col gap-4 z-40">
+          {icons.map((icon, i) => (
+            <a
+              key={i}
+              href={icon.link}
+              className="flex items-center gap-3 text-white hover:text-gray-300 transition-colors"
+              onClick={() => setMenuOpen(false)}
+            >
+              <img
+                src={icon.src}
+                alt={icon.name}
+                className="w-5 h-5 object-contain"
+                style={{ filter: 'invert(1) brightness(100%)' }}
+              />
+              <span
+                style={{
+                  fontFamily: 'Inter, "Inter Placeholder", sans-serif',
+                  fontWeight: 600,
+                  fontSize: '16px',
+                }}
+              >
+                {icon.name}
+              </span>
+            </a>
+          ))}
+          <a
+            href="#contactanos"
+            className="button2 text-center"
+            onClick={() => setMenuOpen(false)}
+          >
             Contactanos
           </a>
         </div>
-      </div>
+      )}
     </>
   );
 }

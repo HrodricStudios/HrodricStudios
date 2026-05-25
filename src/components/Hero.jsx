@@ -9,7 +9,6 @@ export default function Hero() {
     setMounted(true);
   }, []);
 
-  // Ciclo de iluminación secuencial
   useEffect(() => {
     if (!mounted) return;
 
@@ -27,10 +26,10 @@ export default function Hero() {
   if (!mounted) return null;
 
   return (
-    <section className="flex flex-col lg:flex-row items-start justify-center min-h-screen px-6 md:px-8 gap-0 pt-24 lg:pt-32">
-      {/* Columna izquierda: Frase principal + Sección Servicios debajo */}
-      <div className="w-full lg:w-1/2 flex justify-end lg:pr-6 pt-8 lg:pt-24">
-        <div className="max-w-[500px]">
+    <section className="flex flex-col lg:flex-row items-start justify-center min-h-screen px-6 md:px-8 gap-0 pt-16 lg:pt-32">
+      {/* Columna izquierda: Título principal (más arriba en mobile) */}
+      <div className="w-full lg:w-1/2 flex justify-end lg:pr-6 lg:pt-24">
+        <div className="max-w-[500px] flex flex-col">
           <h1
             className="fade-in-up"
             style={{
@@ -48,41 +47,26 @@ export default function Hero() {
             Desarrollo con actitud
           </h1>
 
-          {/* Sección Servicios */}
-          <div className="mt-36">
-            <h3
-              style={{
-                fontFamily: 'Geist, "Geist Placeholder", sans-serif',
-                fontWeight: 400,
-                fontSize: '16px',
-                lineHeight: '24px',
-                color: 'rgb(238, 238, 238)',
-              }}
-            >
-              Servicios
-            </h3>
-
-            <div className="h-px bg-gray-700 my-3 w-48" />
-
-            <ul className="space-y-2">
-              {['Landing Pages', 'Desarrollo Web', 'Consultoría'].map((item, i) => (
-                <ServiceItem key={i} index={i} text={item} active={i === activeIndex} />
-              ))}
-            </ul>
+          {/* Servicios solo en desktop (oculto en mobile) */}
+          <div className="hidden lg:block mt-16">
+            <ServiciosList activeIndex={activeIndex} />
           </div>
         </div>
       </div>
 
-      {/* Columna derecha: Frase secundaria, línea, encontranos y botón */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-start lg:pl-4 lg:pt-28 fade-in-up" style={{ animationDelay: '400ms' }}>
+      {/* Columna derecha: Frase secundaria, línea, Encontranos En, botón LinkedIn */}
+      <div
+        className="w-full lg:w-1/2 flex flex-col justify-start lg:pl-4 lg:pt-28 mt-8 lg:mt-0 fade-in-up"
+        style={{ animationDelay: '400ms' }}
+      >
         <p
           style={{
             fontFamily: 'Inter, "Inter Placeholder", sans-serif',
             fontWeight: 400,
             fontSize: '24px',
             lineHeight: '24px',
-            letterSpacing: '-0.02em', // Un toque sutil de compresión
-            color: '#ffffff', // El texto base ahora es blanco brillante
+            letterSpacing: '-0.02em',
+            color: '#ffffff',
             whiteSpace: 'pre-line',
             textRendering: 'optimizeLegibility',
             WebkitFontSmoothing: 'antialiased',
@@ -90,8 +74,8 @@ export default function Hero() {
         >
           Hrodric Studios diseña Landing Pages,{'\n'}
           desarrolla sitios web a medida y propone{'\n'}
-          Soluciones IT para 
-          <span style={{ color: 'rgba(255, 255, 255, 0.35)' }}> impulsar tus conversiones</span>
+          Soluciones IT para{' '}
+          <span style={{ color: 'rgba(255, 255, 255, 0.35)' }}>impulsar tus conversiones</span>
         </p>
 
         {/* Línea gris más corta */}
@@ -135,7 +119,33 @@ export default function Hero() {
   );
 }
 
-/* Componente para cada item de servicio con guion ancho y transición rápida */
+/* Componente reutilizable para la lista de servicios (sin cambios) */
+function ServiciosList({ activeIndex }) {
+  return (
+    <>
+      <h3
+        style={{
+          fontFamily: 'Geist, "Geist Placeholder", sans-serif',
+          fontWeight: 400,
+          fontSize: '16px',
+          lineHeight: '24px',
+          color: 'rgb(238, 238, 238)',
+        }}
+      >
+        Servicios
+      </h3>
+
+      <div className="h-px bg-gray-700 my-3 w-48" />
+
+      <ul className="space-y-2">
+        {['Landing Pages', 'Desarrollo Web', 'Consultoría'].map((item, i) => (
+          <ServiceItem key={i} index={i} text={item} active={i === activeIndex} />
+        ))}
+      </ul>
+    </>
+  );
+}
+
 function ServiceItem({ index, text, active }) {
   return (
     <li className="flex items-center gap-6">

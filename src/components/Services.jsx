@@ -4,7 +4,7 @@ import { Player } from '@lottiefiles/react-lottie-player';
 const categories = [
   {
     name: 'Landing Pages',
-    description: 'Sitios de una sola página, ultrarrápidos y optimizados para convertir.',
+    description: 'Sitios Single Page, ultrarrápidos y optimizados para convertir.',
     video: '/animations/landing.mp4',
   },
   {
@@ -81,9 +81,9 @@ export default function Services() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Columna izquierda: dos cuadrados perfectos */}
             <div className="flex flex-col gap-6">
-              {/* Categoría 1: Landing Pages – video al 75% */}
+              {/* Categoría 1: Landing Pages */}
               <div className="aspect-square rounded-3xl border border-gray-400/20 bg-black overflow-hidden flex flex-col group fade-in-up">
-                <div className="w-full h-[75%] p-5 pb-0 relative">
+                <div className="w-full h-[70%] md:h-[75%] p-5 pb-0 relative">
                   <div className="w-full h-full rounded-2xl overflow-hidden relative">
                     <video
                       autoPlay
@@ -94,7 +94,6 @@ export default function Services() {
                     >
                       <source src={categories[0].video} type="video/mp4" />
                     </video>
-                    {/* Viñeta de desvanecimiento hacia los bordes */}
                     <div
                       className="absolute inset-0 pointer-events-none"
                       style={{
@@ -104,12 +103,12 @@ export default function Services() {
                     />
                   </div>
                 </div>
-                <div className="flex-1 flex flex-col justify-center px-5 pb-5">
+                <div className="flex-1 flex flex-col justify-center px-5 pb-4 pt-2 md:pb-5">
                   <h3
                     style={{
                       fontFamily: 'Inter, "Inter Placeholder", sans-serif',
                       fontWeight: 600,
-                      fontSize: '20px',
+                      fontSize: '19px',    /* ← 1px menos */
                       lineHeight: '1.3',
                       color: '#ffffff',
                       letterSpacing: '-0.05em',
@@ -124,8 +123,8 @@ export default function Services() {
                     style={{
                       fontFamily: 'Inter, "Inter Placeholder", sans-serif',
                       fontWeight: 400,
-                      fontSize: '16px',
-                      lineHeight: '1.6',
+                      fontSize: '15px',    /* ← 1px menos */
+                      lineHeight: '1.45',  /* ← interlineado más compacto (antes 1.6) */
                       color: 'rgb(200,200,200)',
                     }}
                   >
@@ -134,9 +133,9 @@ export default function Services() {
                 </div>
               </div>
 
-              {/* Categoría 2: Desarrollo Web – Lottie al 85% */}
+              {/* Categoría 2: Desarrollo Web */}
               <div className="aspect-square rounded-3xl border border-gray-400/20 bg-black overflow-hidden flex flex-col group fade-in-up" style={{ animationDelay: '100ms' }}>
-                <div className="w-full h-[85%] p-5 pb-0">
+                <div className="w-full h-[70%] md:h-[80%] p-5 pb-0">
                   <div className="w-full h-full rounded-2xl overflow-hidden">
                     <Player
                       src={categories[1].video}
@@ -146,12 +145,12 @@ export default function Services() {
                     />
                   </div>
                 </div>
-                <div className="flex-1 flex flex-col justify-center px-5 pb-5">
+                <div className="flex-1 flex flex-col justify-center px-5 pb-4 pt-2 md:pb-5">
                   <h3
                     style={{
                       fontFamily: 'Inter, "Inter Placeholder", sans-serif',
                       fontWeight: 600,
-                      fontSize: '20px',
+                      fontSize: '19px',    /* ← 1px menos */
                       lineHeight: '1.3',
                       color: '#ffffff',
                       letterSpacing: '-0.05em',
@@ -166,8 +165,8 @@ export default function Services() {
                     style={{
                       fontFamily: 'Inter, "Inter Placeholder", sans-serif',
                       fontWeight: 400,
-                      fontSize: '16px',
-                      lineHeight: '1.6',
+                      fontSize: '15px',    /* ← 1px menos */
+                      lineHeight: '1.45',  /* ← más compacto */
                       color: 'rgb(200,200,200)',
                     }}
                   >
@@ -177,13 +176,12 @@ export default function Services() {
               </div>
             </div>
 
-            {/* Columna derecha: rectángulo al 65% de la altura de la izquierda */}
+            {/* Columna derecha: Consultoría */}
             <div className="flex flex-col justify-start">
               <div
                 className="relative w-full rounded-3xl border border-gray-400/20 bg-black/40 backdrop-blur-sm overflow-hidden group fade-in-up"
                 style={{
                   animationDelay: '200ms',
-                  // Altura = 65% de (2 * ancho de columna + 24px)
                   paddingTop: 'calc( (2 * 100% + 24px) * 0.65 )',
                 }}
               >
@@ -201,40 +199,40 @@ export default function Services() {
                       </video>
                     </div>
                   </div>
-                  <div className="flex-1 flex flex-col justify-center px-5 pb-5">
+                  <div className="flex-1 flex flex-col justify-center px-5 pb-4 pt-2 md:pb-5">
                     <h3
                       style={{
                         fontFamily: 'Inter, "Inter Placeholder", sans-serif',
                         fontWeight: 600,
-                        fontSize: '20px',
+                        fontSize: '19px',    /* ← 1px menos */
                         lineHeight: '1.3',
                         color: '#ffffff',
                         letterSpacing: '-0.05em',
                         textRendering: 'optimizeLegibility',
                         WebkitFontSmoothing: 'antialiased',
-                      }}
-                    >
-                      {categories[2].name}
-                    </h3>
-                    <p
-                      className="mt-2"
-                      style={{
-                        fontFamily: 'Inter, "Inter Placeholder", sans-serif',
-                        fontWeight: 400,
-                        fontSize: '16px',
-                        lineHeight: '1.6',
-                        color: 'rgb(200,200,200)',
-                      }}
-                    >
-                      {categories[2].description}
-                    </p>
-                  </div>
+                    }}
+                  >
+                    {categories[2].name}
+                  </h3>
+                  <p
+                    className="mt-2"
+                    style={{
+                      fontFamily: 'Inter, "Inter Placeholder", sans-serif',
+                      fontWeight: 400,
+                      fontSize: '15px',    /* ← 1px menos */
+                      lineHeight: '1.45',  /* ← más compacto */
+                      color: 'rgb(200,200,200)',
+                    }}
+                  >
+                    {categories[2].description}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+     </div> 
     </section>
   );
 }
