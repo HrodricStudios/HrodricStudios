@@ -36,7 +36,9 @@ export default function App() {
           <Hero />
 
           {/* =============== FRANJA DE LETRAS =============== */}
-          <Partners />
+          <div className="fade-in-up" style={{ animationDelay: '800ms' }}>
+            <Partners />
+          </div>
 
           {/* =============== SERVICIOS =============== */}
           <Services />
@@ -44,8 +46,9 @@ export default function App() {
           {/* =============== NOSOTROS =============== */}
           <Nosotros />
 
-          {/* =============== CONTACTOS =============== */}
-          <Contact />
+          <div className="fade-in-up" style={{ animationDelay: '1200ms' }}>
+            <Contact />
+          </div>
 
           {/* =============== FOOTER =============== */}
           <Footer />

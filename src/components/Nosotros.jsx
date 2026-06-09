@@ -96,7 +96,7 @@ export default function Nosotros() {
                     color: 'rgb(200,200,200)',
                   }}
                 >
-                  Fundador & Desarrollador
+                  Founder & CEO
                 </p>
                 <p
                   className="mt-2"
@@ -108,7 +108,7 @@ export default function Nosotros() {
                     color: 'rgb(150,150,150)',
                   }}
                 >
-                  Especialista en frontend y diseño de experiencias digitales. Convierte ideas en código robusto y minimalista.
+                  Desarrollador frontend y diseño de experiencias digitales. Convierte ideas en código robusto y minimalista.
                 </p>
               </div>
             </div>
@@ -117,7 +117,7 @@ export default function Nosotros() {
             <div className="flex-1 rounded-3xl border border-gray-400/20 bg-black/40 backdrop-blur-sm overflow-hidden group fade-in-up" style={{ animationDelay: '100ms' }}>
               <div className="aspect-[4/5] relative overflow-hidden mx-auto" style={{ maxWidth: '75%' }}>
                 <img
-                  src="/images/us.png"
+                  src="/images/us2.png"
                   alt="Equipo"
                   className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
                 />
@@ -136,7 +136,7 @@ export default function Nosotros() {
                     WebkitFontSmoothing: 'antialiased',
                   }}
                 >
-                  Colaborador
+                  CTO & Desarrollador
                 </h3>
                 <p
                   className="mt-2"
@@ -148,7 +148,7 @@ export default function Nosotros() {
                     color: 'rgb(200,200,200)',
                   }}
                 >
-                  Diseñador UX/UI
+                  Diseñador de interface y experiencia de usuario UX/UI
                 </p>
                 <p
                   className="mt-2"
