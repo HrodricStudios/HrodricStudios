@@ -118,7 +118,7 @@ export default function Nosotros() {
               <div className="aspect-[4/5] relative overflow-hidden mx-auto" style={{ maxWidth: '75%' }}>
                 <img
                   src="/images/us2.png"
-                  alt="Equipo"
+                  alt="Matias"
                   className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
@@ -136,7 +136,7 @@ export default function Nosotros() {
                     WebkitFontSmoothing: 'antialiased',
                   }}
                 >
-                  CTO & Desarrollador
+                  Matías
                 </h3>
                 <p
                   className="mt-2"
@@ -148,7 +148,7 @@ export default function Nosotros() {
                     color: 'rgb(200,200,200)',
                   }}
                 >
-                  Diseñador de interface y experiencia de usuario UX/UI
+                  CTO & Desarrollador
                 </p>
                 <p
                   className="mt-2"
